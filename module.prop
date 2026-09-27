@@ -1,0 +1,8 @@
+id=aov_zygisk
+name=AOV Zygisk
+version=v2.6.0
+versionCode=20600
+author=dev
+description=AOV 1.63.1.14: 5-layer anti-cheat | Hack Map V2 | Time Hoi Chieu (phu tro VANG) | Aimbot | Auto Boc Pha | Auto Trung Tri | Unlock Skin | Unlock FPS 120 | Kill-Notify | Nut Bam
+minMagisk=24000
+minKernelSU=11583

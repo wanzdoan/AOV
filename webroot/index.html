@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <meta name="color-scheme" content="dark">
+  <title>AOV Zygisk</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+
+  <main class="shell">
+    <header class="hero">
+      <div class="brand">A</div>
+      <div class="hero-copy">
+        <p class="eyebrow">KERNELSU NEXT / ZYGISK</p>
+        <h1>AOV Control</h1>
+        <p>Runtime overlay for com.garena.game.kgvn</p>
+      </div>
+      <div class="status waiting" id="status"><span></span><b>Dang kiem tra</b></div>
+    </header>
+
+    <section class="metrics">
+      <article><span>BUILD</span><strong>2.4.4</strong></article>
+      <article><span>GAME</span><strong id="gameState">Chua chay</strong></article>
+      <article><span>INJECT</span><strong id="injectState">Cho</strong></article>
+    </section>
+
+    <section class="card notice">
+      <div>
+        <p class="eyebrow">IN-GAME CONTROL</p>
+        <h2>Mo bang nut A trong game</h2>
+        <p>Map Vision, Hero Cooldowns va Camera duoc dieu khien trong ImGui. WebUI nay chi hien thi chan doan va log.</p>
+      </div>
+      <button class="icon-button" id="refresh" aria-label="Lam moi">↻</button>
+    </section>
+
+    <section class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon cyan">M</div>
+        <div><h3>Map Vision</h3><p>Live enemy model, minimap pointer and portrait</p></div>
+      </article>
+      <article class="feature">
+        <div class="feature-icon gold">CD</div>
+        <div><h3>Native Cooldowns</h3><p>Talent | C1 | C2 | C3 in hero-name text</p></div>
+      </article>
+      <article class="feature">
+        <div class="feature-icon violet">Z</div>
+        <div><h3>Camera</h3><p>Live zoom-rate multiplier</p></div>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <div><p class="eyebrow">DIAGNOSTICS</p><h2>Runtime log</h2></div>
+        <button class="text-button" id="logs">Tai lai log</button>
+      </div>
+      <pre id="console">WebUI san sang.</pre>
+    </section>
+
+    <section class="actions">
+      <button class="primary" id="check">Kiem tra module</button>
+      <button class="danger" id="stop">Dung AOV</button>
+    </section>
+
+    <footer>AOV Zygisk 2.4.4 · arm64-v8a · runtime hook set 1.63.1.10</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

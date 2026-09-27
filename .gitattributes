@@ -1,0 +1,14 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.cpp text eol=lf
+*.hpp text eol=lf
+*.h text eol=lf
+*.md text eol=lf
+*.ps1 text eol=lf
+*.bat text eol=crlf
+*.prop text eol=lf
+META-INF/com/google/android/update-binary text eol=lf
+META-INF/com/google/android/updater-script text eol=lf
+*.a binary
+*.png binary
+*.jpg binary

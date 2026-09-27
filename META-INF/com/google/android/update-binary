@@ -1,0 +1,56 @@
+#!/sbin/sh
+# =============================================================================
+#  AOV Zygisk — Magisk/KernelSU Compatible Module Installer
+#  Chuẩn update-binary theo spec Magisk/KernelSU
+# =============================================================================
+SKIPUNZIP=1
+
+# ── Utility functions ─────────────────────────────────────────────────────────
+ui_print() { echo "ui_print $1" >> /proc/self/fd/$OUTFD; echo "ui_print" >> /proc/self/fd/$OUTFD; }
+abort() { ui_print "$1"; exit 1; }
+
+# ── Detect root environment ────────────────────────────────────────────────────
+if [ "$KSU" = "true" ]; then
+    ui_print "- Root: KernelSU Next ✓"
+    [ "$ZYGISK_ENABLED" = "1" ] || abort "! ZygiskNext chưa bật. Cài ZygiskNext trước."
+    ui_print "- ZygiskNext: enabled ✓"
+elif [ -n "$MAGISK_VER" ]; then
+    ui_print "- Root: Magisk $MAGISK_VER ✓"
+    [ "$ZYGISK_ENABLED" = "1" ] || abort "! Zygisk chưa bật. Vào Magisk → Settings → Enable Zygisk."
+else
+    abort "! Không hỗ trợ môi trường root này."
+fi
+
+# ── Architecture ──────────────────────────────────────────────────────────────
+ARCH=$(uname -m)
+[ "$ARCH" = "aarch64" ] || abort "! Chỉ hỗ trợ arm64-v8a (thiết bị của bạn: $ARCH)"
+ui_print "- ABI: arm64-v8a ✓"
+
+# ── Install ───────────────────────────────────────────────────────────────────
+ui_print "- Đang cài AOV Zygisk..."
+
+unzip -o "$ZIPFILE" 'module.prop'     -d "$MODPATH" >&2
+unzip -o "$ZIPFILE" 'customize.sh'    -d "$MODPATH" >&2
+unzip -o "$ZIPFILE" 'post-mount.sh'   -d "$MODPATH" >&2
+unzip -o "$ZIPFILE" 'post-fs-data.sh' -d "$MODPATH" >&2
+unzip -o "$ZIPFILE" 'service.sh'      -d "$MODPATH" >&2
+unzip -o "$ZIPFILE" 'zygisk/*'        -d "$MODPATH" >&2
+unzip -o "$ZIPFILE" 'webroot/*'       -d "$MODPATH" >&2
+
+# ── Check compiled .so ────────────────────────────────────────────────────────
+if [ ! -f "$MODPATH/zygisk/arm64-v8a.so" ]; then
+    abort "! zygisk/arm64-v8a.so không có trong ZIP. Cần compile trước!"
+fi
+ui_print "- zygisk/arm64-v8a.so ✓"
+
+# ── Permissions ───────────────────────────────────────────────────────────────
+set_perm_recursive "$MODPATH" root root 0755 0644
+set_perm "$MODPATH/zygisk/arm64-v8a.so" root root 0644
+
+# ── Custom installer logic (Magisk/KernelSU spec) ────────────────────────────
+if [ -f "$MODPATH/customize.sh" ]; then
+    . "$MODPATH/customize.sh"
+fi
+
+ui_print "- ✓ AOV Zygisk cài xong!"
+ui_print "- Reboot → Mở Liên Quân → Tap [M] góc trên trái"

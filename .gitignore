@@ -1,0 +1,80 @@
+# Generated builds, packages and native output
+/build/
+/out/
+/.cxx/
+/.externalNativeBuild/
+CMakeFiles/
+CMakeCache.txt
+compile_commands.json
+*.zip
+*.7z
+*.apk
+*.aab
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.pdb
+*.ilk
+
+# Keep jni/vendor sources, custom Android backend, API headers and the
+# required prebuilt jni/vendor/dobby/lib/arm64-v8a/libdobby.a under version control.
+
+# Game dumps, extracted binaries and analysis databases
+/dump.cs
+/dump/
+/dumps/
+/apk_dump/
+*.dex
+*.idb
+*.i64
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+*.dmp
+*.log
+
+# Local agent tooling and caches
+/.agent/
+/.agents/
+/.codex/
+__pycache__/
+*.pyc
+node_modules/
+.venv/
+venv/
+
+# Runtime settings and local credentials
+first_frost.cfg
+first_frost.cfg.tmp
+imgui.ini
+.env
+.env.*
+!.env.example
+local.properties
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+*.pem
+
+# IDE and editor files
+.idea/
+.vscode/
+.vs/
+*.iml
+*.user
+*.suo
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# OS metadata
+Thumbs.db
+desktop.ini
+.DS_Store
